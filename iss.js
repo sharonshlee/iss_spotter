@@ -8,7 +8,7 @@
  */
 const request = require("request");
 
-const fetchMyIP = function (callback) {
+const fetchMyIP = function(callback) {
   // use request to fetch IP address from JSON API
   request("https://api.ipify.org?format=json", (error, response, body) => {
     if (error) {
@@ -26,7 +26,7 @@ const fetchMyIP = function (callback) {
 };
 
 //takes in an IP address and returns the latitude and longitude for it.
-const fetchCoordsByIP = function (ip, callback) {
+const fetchCoordsByIP = function(ip, callback) {
   const geoURL = "https://freegeoip.app/json/";
 
   request(`${geoURL}${ip}`, (error, response, body) => {
@@ -56,7 +56,7 @@ const fetchCoordsByIP = function (ip, callback) {
    *     [ { risetime: 134564234, duration: 600 }, ... ]
    */
 };
-const fetchISSFlyOverTimes = function (coords, callback) {
+const fetchISSFlyOverTimes = function(coords, callback) {
   // console.log(coords);
   const url = `http://api.open-notify.org/iss-pass.json?lat=${coords.latitude}&lon=${coords.longitude}`;
   // console.log(url);
@@ -91,7 +91,7 @@ const fetchISSFlyOverTimes = function (coords, callback) {
  *   - The fly-over times as an array (null if error):
  *     [ { risetime: <number>, duration: <number> }, ... ]
  */
-const nextISSTimesForMyLocation = function (callback) {
+const nextISSTimesForMyLocation = function(callback) {
   fetchMyIP((error, ip) => {
     if (error) {
       callback(error);
